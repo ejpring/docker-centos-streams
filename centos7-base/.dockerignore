@@ -1,0 +1,8 @@
+# Copyright (C) 2016, 2018  International Business Machines Corporation
+# All Rights Reserved
+
+# these files in the Dockerfile directory are not needed for building the image
+
+README.*
+*.sh
+*.log
