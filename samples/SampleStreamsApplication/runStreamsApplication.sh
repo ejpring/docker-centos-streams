@@ -1,7 +1,7 @@
-# Copyright (C) 2016, 2017  International Business Machines Corporation
-# All Rights Reserved
-
 #!/bin/bash
+
+# Copyright (C) 2016, 2018  International Business Machines Corporation
+# All Rights Reserved
 
 ################################################################################
 #
@@ -16,21 +16,37 @@ step() { echo ; echo -e "$*" ; }
 
 here=$( cd ${0%/*} ; pwd )
 
-applicationBundle=$HOME/MyStreamsApplication/output/MyStreamsNamespace.Main.sab
+# uncomment one of the following lines to choose which Docker image to use
 
-applicationDataDirectory=$HOME/MyStreamsApplication/data
+#dockerImageName=centos7-streams4200-run
+#dockerImageName=centos7-streams4211-run
+#dockerImageName=centos7-streams4212-run
+#dockerImageName=centos7-streams4213-run
+#dockerImageName=centos7-streams4220-run
+#dockerImageName=centos7-streams4240-run
+#dockerImageName=centos7-streams4241-run
+dockerImageName=centos7-streams4242-run
+
+applicationBundle=$here/output/SampleStreamsApplication.Main.sab
+
+applicationDataDirectory=$here/data
 
 applicationSubmissionTimeParameterList=(
-    sourceFilename=/home/streamsrun/data/poem.in
-    sinkFilename=/home/streamsrun/data/poem.out
+    inputFilename=/home/streamsrun/data/poem.in
+    outputFilename=/home/streamsrun/data/poem.out
+    "\"stringParameter=Hello, world\""
+    integerParameter=42
+    floatParameter=3.14159
+    booleanParameter=true
+    "\"listParameter=[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]\""
+    "\"mapParameter={200: 'OK', 301: 'Moved Permanently', 408: 'Request Timeout', 501: 'Not Implemented'}\""
 )
 
 dockerRunParameterList=(
+    --rm
     -v $( dirname $applicationBundle ):/home/streamsrun/bundle:ro
     -v $applicationDataDirectory:/home/streamsrun/data:rw
 )
-
-dockerImageName=$( basename $here )
 
 traceLevel=3 # ... 0 for off, 1 for error, 2 for warn, 3 for info, 4 for debug, 5 for trace
 
@@ -38,7 +54,9 @@ traceLevel=3 # ... 0 for off, 1 for error, 2 for warn, 3 for info, 4 for debug, 
 
 # make sure Docker is installed and running 
 
-docker info 1>/dev/null || exit $?
+step "verifying Docker is available ..."
+which docker 1>/dev/null || die "sorry, 'docker' command not found"
+docker info 1>/dev/null || die "sorry, Docker is not running"
 
 # make sure application bundle and data directory exist
 
@@ -47,13 +65,11 @@ docker info 1>/dev/null || exit $?
 
 # run the Streams application
 
-step "running Streams application bundle $applicationBundle ..."
-#docker run ${dockerRunParameterList[*]} $dockerImageName /sbin/runuser -l streamsrun -c "export"
-#docker run ${dockerRunParameterList[*]} $dockerImageName /sbin/runuser -l streamsrun -c "ls -al \$STREAMS_INSTALL/java/jre/bin"
-#docker run ${dockerRunParameterList[*]} $dockerImageName /sbin/runuser -l streamsrun -c "$streamsApplicationBundle -t $traceLevel ${applicationSubmissionTimeParameterList[*]}" || die "Sorry, could not run Streams application $applicationNamespace::$applicationComposite, $?" 
-#docker run ${dockerRunParameterList[*]} $dockerImageName /sbin/runuser -l streamsrun -c "\$STREAMS_INSTALL/java/jre/bin/java -jar $streamsApplicationBundle -t $traceLevel ${applicationSubmissionTimeParameterList[*]}" || die "Sorry, could not run Streams application bundle $streamsApplicationBundle, $?" 
+( IFS=$'\n' ; echo -e "\nsubmission-time parameters:\n${applicationSubmissionTimeParameterList[*]}" )
 
+step "running Streams application bundle $applicationBundle ..."
 bundleName=$( basename $applicationBundle )
+#docker run -it ${dockerRunParameterList[*]} $dockerImageName
 docker run ${dockerRunParameterList[*]} $dockerImageName /sbin/runuser -l streamsrun -c "java -jar /home/streamsrun/bundle/$bundleName -t $traceLevel ${applicationSubmissionTimeParameterList[*]}" || die "Sorry, could not run Streams application bundle $streamsApplicationBundle, $?" 
 
 exit 0

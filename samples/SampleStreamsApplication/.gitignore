@@ -27,10 +27,6 @@ StreamsLogs*.tgz
 # ignore Java dumps
 javacore.*
 
-# ignore the credentials file
-vcap.json
-BluemixStreamsServiceCredentials.json*
-
 # ignore Python cache
 __pycache__/
 

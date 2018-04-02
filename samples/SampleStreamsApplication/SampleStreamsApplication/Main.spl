@@ -8,31 +8,31 @@ namespace SampleStreamsApplication;
 composite Main {
 
   param
-  expression<rstring> $inputFilename: getApplicationDir()+"/etc/poem.in";
-  expression<rstring> $outputFilename: getApplicationDir()+"/etc/poem.out";
-  expression<int32> $iterationCount: (int32)getSubmissionTimeValue("iterationCount", "1");
-  expression<float64> $iterationInterval: (float64)getSubmissionTimeValue("iterationInterval", "1.0");
-  expression<rstring> $stringParameter: getSubmissionTimeValue("stringParameter", "");
-  expression<int32> $integerParameter: (int32)getSubmissionTimeValue("integerParameter", "0");
-  expression<float64> $floatParameter: (float64)getSubmissionTimeValue("floatParameter", "0.0");
-  expression<boolean> $booleanParameter: (boolean)getSubmissionTimeValue("booleanParameter", "false");
-  expression<list<int32>> $listParameter: (list<int32>)getSubmissionTimeValue("listParameter", "[]");
-  expression<map<int32,rstring>> $mapParameter: (map<int32,rstring>)getSubmissionTimeValue("mapParameter", "{}");
+  expression<rstring>            $inputFilename:                         getSubmissionTimeValue("inputFilename",     "./etc/poem.in");
+  expression<rstring>            $outputFilename:                        getSubmissionTimeValue("outputFilename",    "./etc/poem.out");
+  expression<int32>              $iterationCount:                 (int32)getSubmissionTimeValue("iterationCount",    "1");
+  expression<float64>            $iterationInterval:            (float64)getSubmissionTimeValue("iterationInterval", "1.0");
+  expression<rstring>            $stringParameter:                       getSubmissionTimeValue("stringParameter",   "");
+  expression<int32>              $integerParameter:               (int32)getSubmissionTimeValue("integerParameter",  "0");
+  expression<float64>            $floatParameter:               (float64)getSubmissionTimeValue("floatParameter",    "0.0");
+  expression<boolean>            $booleanParameter:             (boolean)getSubmissionTimeValue("booleanParameter",  "false");
+  expression<list<int32>>        $listParameter:            (list<int32>)getSubmissionTimeValue("listParameter",     "[]");
+  expression<map<int32,rstring>> $mapParameter:      (map<int32,rstring>)getSubmissionTimeValue("mapParameter",      "{}");
 
 
   graph
 
   () as Parameters = Custom() {
   logic onProcess: {
-    log(Sys.info, "input filename: " + $inputFilename);
-    log(Sys.info, "output filename: " + $outputFilename);
-    log(Sys.info, "parameter iterationCount: " + (rstring)$iterationCount);
+    log(Sys.info, "input filename: "              +          $inputFilename);
+    log(Sys.info, "output filename: "             +          $outputFilename);
+    log(Sys.info, "parameter iterationCount: "    + (rstring)$iterationCount);
     log(Sys.info, "parameter iterationInterval: " + (rstring)$iterationInterval);
-    log(Sys.info, "parameter stringParameter: \"" + $stringParameter + "\"");
-    log(Sys.info, "parameter integerParameter: " + (rstring)$integerParameter);
-    log(Sys.info, "parameter floatParameter: " + (rstring)$floatParameter);
-    log(Sys.info, "parameter listParameter: " + (rstring)$listParameter);
-    log(Sys.info, "parameter mapParameter: " + (rstring)$mapParameter);
+    log(Sys.info, "parameter stringParameter: \"" +          $stringParameter + "\"");
+    log(Sys.info, "parameter integerParameter: "  + (rstring)$integerParameter);
+    log(Sys.info, "parameter floatParameter: "    + (rstring)$floatParameter);
+    log(Sys.info, "parameter listParameter: "     + (rstring)$listParameter);
+    log(Sys.info, "parameter mapParameter: "      + (rstring)$mapParameter);
   } }
 
   stream<rstring filename> FilenameStream as Out = Beacon() {
