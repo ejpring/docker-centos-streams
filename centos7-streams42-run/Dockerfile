@@ -17,7 +17,7 @@ FROM centos:centos7
 # define arguments passed from 'docker build' command
 
 ARG ROOT_PASSWORD
-ARG STREAMS_INSTALL_PACKAGE
+ARG STREAMS_SUBSET_PACKAGE
 
 # install the Linux packages used below
 
@@ -33,7 +33,7 @@ RUN echo root:$ROOT_PASSWORD | chpasswd
 RUN useradd streamsadmin && \
     chmod 0755 /home/streamsadmin
 
-# create a user account for Streams applications
+# create a user account for running Streams applications
 
 RUN useradd streamsrun && \
     chmod 0755 /home/streamsrun
@@ -44,8 +44,8 @@ ADD streamsrun.bashrc /home/streamsrun/.bashrc
 
 # download and install a runtime subset of IBM Streams with either 'tar' or 'bsdtar'
 
-#RUN curl -s $STREAMS_INSTALL_PACKAGE | tar -xz -C / --owner=streamsadmin --group=streamsadmin
-RUN curl -s $STREAMS_INSTALL_PACKAGE | bsdtar -f - -x -z -C / --uname streamsadmin --gname streamsadmin
+RUN curl -s $STREAMS_SUBSET_PACKAGE | tar -xz -C / --owner=streamsadmin --group=streamsadmin
+#RUN curl -s $STREAMS_SUBSET_PACKAGE | bsdtar -f - -x -z -C / --uname streamsadmin --gname streamsadmin
 
 # by default, run a BASH shell under the 'streamsrun' user account when this image is executed 
 

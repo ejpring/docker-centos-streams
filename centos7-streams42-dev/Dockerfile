@@ -20,7 +20,7 @@ ARG ROOT_PASSWORD
 ARG USER_PASSWORD
 ARG ADMIN_PASSWORD
 ARG VNC_GEOMETRY
-ARG STREAMS_INSTALL_PACKAGE
+ARG STREAMS_SUBSET_PACKAGE
 
 # update RPMs in base package to current versions, but preserve the locales from the base image
 
@@ -117,8 +117,8 @@ VOLUME /home/streamsdev
 
 # download and install a development subset of IBM Streams with either 'tar' or 'bsdtar'
 
-RUN curl -s $STREAMS_INSTALL_PACKAGE | tar -xz -C / --owner=streamsadmin --group=streamsadmin
-#RUN curl -s $STREAMS_INSTALL_PACKAGE | bsdtar -f - -x -z -C / --uname streamsadmin --gname streamsadmin
+RUN curl -s $STREAMS_SUBSET_PACKAGE | tar -xz -C / --owner=streamsadmin --group=streamsadmin
+#RUN curl -s $STREAMS_SUBSET_PACKAGE | bsdtar -f - -x -z -C / --uname streamsadmin --gname streamsadmin
 
 # expose HTTP and HTTPS ports for Streams Console
 

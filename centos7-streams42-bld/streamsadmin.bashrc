@@ -37,5 +37,5 @@ export TZ=America/New_York
 
 ##### go to the SPL application directory, if there is one
 
-[[ -d $HOME/application ]] && cd $HOME/application
+#[[ -d $HOME/application ]] && cd $HOME/application
 

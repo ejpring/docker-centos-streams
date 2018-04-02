@@ -18,7 +18,7 @@ FROM centos:centos7
 
 ARG ROOT_PASSWORD
 ARG ADMIN_PASSWORD
-ARG STREAMS_INSTALL_PACKAGE
+ARG STREAMS_SUBSET_PACKAGE
 
 # update RPMs in base package to current versions, but preserve the locales from the base image
 
@@ -31,7 +31,7 @@ RUN cp -p /usr/lib/locale/locale-archive /usr/lib/locale/locale-archive.original
 # install the some Linux tools and utilities and libraries
 
 RUN yum -y groupinstall emacs && \
-    yum -y install sudo which jq wget curl xdg-utils bind-utils net-tools openssh-clients openssh-server git gcc gcc-c++ initscripts perl-XML-Simple && \
+    yum -y install sudo which wget curl xdg-utils bind-utils net-tools openssh-clients openssh-server git gcc gcc-c++ initscripts perl-XML-Simple && \
     yum -y install openssl-devel curl-devel libcurl-devel bzip2-devel libmicrohttpd-devel zlib-devel numactl-libs numactl-devel && \
     yum clean all
 
@@ -65,10 +65,14 @@ RUN useradd streamsadmin && \
 
 ADD streamsadmin.bashrc /home/streamsadmin/.bashrc
 
+# create a mount point for an application source directory in the streamsadmin user account
+
+VOLUME /home/streamsadmin/application
+
 # download and install a development subset of IBM Streams with either 'tar' or 'bsdtar'
 
-#RUN curl -s $STREAMS_INSTALL_PACKAGE | tar -xz -C / --owner=streamsadmin --group=streamsadmin
-RUN curl -s $STREAMS_INSTALL_PACKAGE | bsdtar -f - -x -z -C / --uname streamsadmin --gname streamsadmin
+RUN curl -s $STREAMS_SUBSET_PACKAGE | tar -xz -C / --owner=streamsadmin --group=streamsadmin
+#RUN curl -s $STREAMS_SUBSET_PACKAGE | bsdtar -f - -x -z -C / --uname streamsadmin --gname streamsadmin
 
 # by default, run a BASH shell under the 'streamsadmin' user account when this image is executed 
 

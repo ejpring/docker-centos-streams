@@ -41,7 +41,7 @@ dockerBuildParameters=(
     --build-arg USER_PASSWORD=password
     --build-arg ADMIN_PASSWORD=password
     --build-arg VNC_GEOMETRY=1440x900
-    --build-arg STREAMS_INSTALL_PACKAGE=$streamsSubsetPackageLibraryURL/$streamsSubsetPackage
+    --build-arg STREAMS_SUBSET_PACKAGE=$streamsSubsetPackageLibraryURL/$streamsSubsetPackage
 )
 
 containerName=$imageName
