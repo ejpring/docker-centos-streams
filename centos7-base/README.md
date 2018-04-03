@@ -69,9 +69,9 @@ This script will install the Streams release specified by the configuation files
 
 After creating Streams subset packages, they can be used by the Dockerfiles and scripts in these directories to create images and containers for developing, compiling, and running Streams applications:
 
-    [centos7-streams42-dev](../centos7-streams42-dev) creates a container for application development
-    [centos7-streams42-bld](../centos7-streams42-bld) creates an image for compiling applications
-    [centos7-streams42-run](../centos7-streams42-run) creates an image for running applications
+* [centos7-streams42-dev](../centos7-streams42-dev) creates a container for application development
+* [centos7-streams42-bld](../centos7-streams42-bld) creates an image for compiling applications
+* [centos7-streams42-run](../centos7-streams42-run) creates an image for running applications
 
 
 ### or, create a container for creating Streams subsets
