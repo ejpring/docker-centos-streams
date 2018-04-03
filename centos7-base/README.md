@@ -4,16 +4,16 @@ All Rights Reserved
 
 ## Docker 'centos7-base' for preparing subsets of IBM Streams
 
-This repository contains a Dockerfile and associated scripts that install IBM Streams and prepare subsets of it for the 'centos7-streamsXX-YYY' directories of this repository, intended for use with [Docker](https://www.docker.com/). It creates an image and a container for consisting of:
+This repository contains a Dockerfile and associated scripts that install IBM Streams and prepare subsets of it, intended for use with [Docker](https://www.docker.com/). It creates an image or container consisting of:
 
 * CentOS release 7
 * Xfce desktop version 4
 * servers for SSH and VNC access
 * some open-source utilities, tools, and libraries
 
-The image allows Streams subsets to be generated automatically from the host computer. The container provides an Xfce desktop for those who prefer to log in via VNC.
+The image allows Streams subsets to be generated automatically from the host computer. The container provides an Xfce desktop for those who prefer to log in via SSH or VNC.
 
-The Streams install and subset preparation scripts require substantial memory and disk space for Docker plus additional space on a network server that is accessible by both HTTP and SFTP. Please refer to the guidance below for details.
+**Note:** The Streams install and subset preparation scripts require substantial memory and disk space for Docker plus additional space on a network server that is accessible by both HTTP and SFTP. Please refer to the guidance below for details.
 
 
 ### install Docker
@@ -69,18 +69,16 @@ This script will install the Streams release specified by the configuation files
 
 After creating Streams subset packages, they can be used by the Dockerfiles and scripts in these directories to create images and containers for developing, compiling, and running Streams applications:
 
-    (centos7-streams42-dev)[../centos7-streams42-dev] creates a container for application development
-    (centos7-streams42-bld)[../centos7-streams42-bld] creates an image for compiling applications
-    (centos7-streams42-run)[../centos7-streams42-run] creates an image for running applications
+    [centos7-streams42-dev](../centos7-streams42-dev) creates a container for application development
+    [centos7-streams42-bld](../centos7-streams42-bld) creates an image for compiling applications
+    [centos7-streams42-run](../centos7-streams42-run) creates an image for running applications
 
 
-
-### create a container for creating Streams subsets
+### or, create a container for creating Streams subsets
 
 Alternatively, you may prefer to create a Docker container from the 'centos7-base' image, start it, and log into it with SSH or VNC. To create the container, execute this script:
 
     $HOME/git/docker-centos-streams/centos7-base/createDockerContainer.sh
-
 
 and start the container by executing this command:
 
