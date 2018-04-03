@@ -53,7 +53,7 @@ The default processor and memory resources Docker allocates are insufficient for
 
 Clone or download the 'git' repository ['docker-centos-streams'](https://github.com/ejpring/docker-centos-streams).
 
-Before creating the container, edit its build script and change its parameters to match your environment, as indicated by the comments at the top of the script:
+Before creating the container, change the parameters in its build script to match your environment, as indicated by the comments at the top of the script:
 
     $HOME/git/docker-centos-streams/centos7-streams42-dev/createDockerContainer.sh
 
