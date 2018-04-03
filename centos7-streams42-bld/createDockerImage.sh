@@ -16,7 +16,7 @@ step() { echo ; echo -e "$*" ; }
 
 here=$( cd ${0%/*} ; pwd )
 
-source $here/../config/centos7.config
+source $here/../config/centos7.cfg
 
 streamsSubsetPackage=StreamsSubset.centos7-streams$streamsVersion-bld.tar.gz
 
