@@ -1,4 +1,4 @@
-Copyright &copy; 2016, 2018  International Business Machines Corporation
+yCopyright &copy; 2016, 2018  International Business Machines Corporation
 All Rights Reserved
 
 ## SampleStreamsApplication
