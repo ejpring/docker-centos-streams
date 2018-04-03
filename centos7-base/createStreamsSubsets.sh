@@ -20,6 +20,7 @@ dockerRunParameters=(
     -it
     --rm
     --volume $here/prepare:/home/streamsdev/prepare:ro
+    --volume $here/../config:/home/streamsdev/config:ro
     --volume $HOME/.ssh:/home/streamsdev/.ssh:ro
 )
 

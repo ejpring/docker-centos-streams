@@ -16,23 +16,11 @@ step() { echo ; echo -e "$*" ; }
 
 here=$( cd ${0%/*} ; pwd )
 
-# set this URL to point at the HTTP directory where Streams subset packages are stored
+source $here/../config/centos7.cfg
 
-streamsSubsetPackageLibraryURL=http://splanet02.watson.ibm.com:8080/upload/StreamsSubsetPackages
+streamsSubsetPackage=StreamsSubset.centos7-streams$streamsVersion-dev.tar.gz
 
-# uncomment one of the following lines to choose which release of Streams will be used
-
-#streamsSubsetPackage=StreamsSubset.centos7-streams4200-dev.tar.gz
-#streamsSubsetPackage=StreamsSubset.centos7-streams4211-dev.tar.gz
-#streamsSubsetPackage=StreamsSubset.centos7-streams4212-dev.tar.gz
-#streamsSubsetPackage=StreamsSubset.centos7-streams4213-dev.tar.gz
-#streamsSubsetPackage=StreamsSubset.centos7-streams4220-dev.tar.gz
-#streamsSubsetPackage=StreamsSubset.centos7-streams4240-dev.tar.gz
-#streamsSubsetPackage=StreamsSubset.centos7-streams4241-dev.tar.gz
-streamsSubsetPackage=StreamsSubset.centos7-streams4242-dev.tar.gz
-
-regex="StreamsSubset\.(.+)\.tar\.gz"
-[[ $streamsSubsetPackage =~ $regex ]] && imageName="${BASH_REMATCH[1]}"
+imageName=centos7-streams$streamsVersion-dev
 
 dockerBuildParameters=(
     --file $here/Dockerfile
@@ -41,7 +29,7 @@ dockerBuildParameters=(
     --build-arg USER_PASSWORD=password
     --build-arg ADMIN_PASSWORD=password
     --build-arg VNC_GEOMETRY=1440x900
-    --build-arg STREAMS_SUBSET_PACKAGE=$streamsSubsetPackageLibraryURL/$streamsSubsetPackage
+    --build-arg STREAMS_SUBSET_PACKAGE=$streamsSubsetPackageServerURL/$streamsSubsetPackage
 )
 
 containerName=$imageName

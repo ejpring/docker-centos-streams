@@ -27,6 +27,7 @@ dockerCreateParameters=(
     --publish $vncPort:5901
     --env VNC_GEOMETRY=1440x900
     --volume $here/prepare:/home/streamsdev/prepare:rw
+    --volume $here/../config:/home/streamsdev/config:rw
     --volume $HOME/.ssh:/home/streamsdev/.ssh:ro
     ###--security-opt seccomp=unconfined
 )

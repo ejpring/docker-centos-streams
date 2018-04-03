@@ -31,11 +31,13 @@ Install [Docker for Windows](https://docs.docker.com/windows/) or [Docker for Ma
 
 Clone or download the 'git' repository ['docker-centos-streams'](https://github.com/ejpring/docker-centos-streams).
 
-Before creating the image, change the parameters in its build script to match your environment, as indicated by the comments at the top of the script:
+Before creating the image, change the parameters in this configuration file to match your environment:
+
+    $HOME/git/docker-centos-streams/config/centos7.cfg
+
+Then, to create the image, execute this script:
 
     $HOME/git/docker-centos-streams/centos7-streams42-run/createDockerImage.sh
-
-To create the image, execute the script after customizing it.
 
 The image includes these accounts:
 
