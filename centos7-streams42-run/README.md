@@ -54,7 +54,7 @@ The container has this external connection point:
 
 ### use the image
 
-After creating the image, run it to run Streams Application Bundles (SAB files). For an example of how to do this, see the [SampleStreamsApplication directory](../../samples/SampleStreamsApplication).
+After creating the image, use it to run Streams Application Bundles (SAB files). For an example of how to do this, see the [SampleStreamsApplication directory](../../samples/SampleStreamsApplication).
 
 The compiler produces Streams Application Bundles, which are SAB files stored in the 'output' subdirectory of the application directory. The ['centos7-streams42-bld' image](../centos7-streams42-bld) can be used to compile Streams applications.
 

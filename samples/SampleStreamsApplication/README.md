@@ -1,4 +1,4 @@
-yCopyright &copy; 2016, 2018  International Business Machines Corporation
+Copyright &copy; 2016, 2018  International Business Machines Corporation
 All Rights Reserved
 
 ## SampleStreamsApplication
@@ -22,7 +22,7 @@ To compile a Streams application, you will need to create a Docker image that co
 
 After creating the Docker image, before compiling the application, change the parameters in the build script to match your environment, as indicated by the comments at the top of the script:
 
-    $HOME/git/docker-centos-streams/sample/SampleStreamsApplication/buildStreamsApplication.sh
+    $HOME/git/docker-centos-streams/samples/SampleStreamsApplication/buildStreamsApplication.sh
 
 
 ### run the sample application
@@ -31,6 +31,6 @@ To run a Streams application, you will need to create a Docker image that contai
 
 After creating the Docker image, before running the application, change the parameters in the run script to match your environment, as indicated by the comments at the top of the script:
 
-    $HOME/git/docker-centos-streams/sample/SampleStreamsApplication/runStreamsApplication.sh
+    $HOME/git/docker-centos-streams/samples/SampleStreamsApplication/runStreamsApplication.sh
 
 
