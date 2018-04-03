@@ -8,13 +8,13 @@ Docker allows IBM Streams applications to be developed, compiled, and run on mac
 
 To minimize their size, three separate Dockerfiles containing subsets of IBM Streams can be created:
 
-* [centos7-streams42-dev](centos7-streams42-dev) creates a container for application development (5.3GB)
-* [centos7-streams42-bld](centos7-streams42-bld) creates an image for compiling applications (1.75GB)
-* [centos7-streams42-run](centos7-streams42-run) creates an image for running applications (735MB)
+* [centos7-streams42-dev](centos7-streams42-dev) creates a container for application development (5.3 GB)
+* [centos7-streams42-bld](centos7-streams42-bld) creates an image for compiling applications (1.75 GB)
+* [centos7-streams42-run](centos7-streams42-run) creates an image for running applications (735 MB)
 
 The subsets of Streams must be prepared before images and containers can be created. They can be created automatically from Streams install packages:
 
-* [centos7-base](centos7-base) creates subsets of IBM Streams (1.9GB)
+* [centos7-base](centos7-base) creates subsets of IBM Streams (1.9 GB)
 
 These Dockerfiles access a network server with HTTP and SFTP, as specified in this configuration file:
 

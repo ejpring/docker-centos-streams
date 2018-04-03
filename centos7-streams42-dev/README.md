@@ -18,7 +18,7 @@ The container provides an Xfce desktop for those who prefer to develop applicati
 
 To build the container, Docker will need access to an HTTP server where subsets of IBM Streams have been stored. See ['centos7-base'](../centos7-base) for instructions on preparing subsets of IBM Streams.
 
-Building the container will take about XXX minutes with a fast network connection. It will be about XXX GB in size.
+Building the container will take about 16 minutes with a fast network connection. It will be about 5.3 GB in size.
 
 
 ### quick start procedure

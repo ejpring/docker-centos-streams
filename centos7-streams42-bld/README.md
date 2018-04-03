@@ -16,7 +16,7 @@ The host directory containing the Streams application to be compiled is mounted 
 
 To build the image, Docker will need access to an HTTP server where subsets of IBM Streams have been stored. See ['centos7-base'](../centos7-base) for instructions on preparing subsets of IBM Streams.
 
-Building the image will take about XXX minutes with a fast network connection. It will be about XXX GB in size.
+Building the image will take about XXX minutes with a fast network connection. It will be about 1.75 GB in size.
 
 
 ### prepare Streams subsets

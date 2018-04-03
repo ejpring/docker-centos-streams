@@ -49,7 +49,7 @@ The preparation scripts get server URLs and package names from a configuration f
 
 ### create Streams subsets automatically
 
-First, to create a Docker image for creating subsets of Streams, execute this script, which will run for about eight minutes with a fast network connection:
+First, to create a Docker image for creating subsets of Streams, execute this script, which will run for about nine minutes with a fast network connection:
 
     $HOME/git/docker-centos-streams/centos7-base/createDockerImage.sh
 
@@ -57,7 +57,7 @@ The 'centos7-base' image only needs to be created once.
 
 Whenever a Streams install package is released, store it in the Streams install package server and put the package name in the configuration file.
 
-Then, to create subsets of Streams for that release, execute this script, which will run for at least half an hour:
+Then, to create subsets of Streams for that release, execute this script, which will run for about half an hour:
 
     $HOME/git/docker-centos-streams/centos7-base/createStreamsSubsets.sh
 
