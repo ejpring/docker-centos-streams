@@ -42,6 +42,10 @@ RUN useradd streamsrun && \
 
 ADD streamsrun.bashrc /home/streamsrun/.bashrc
 
+# create a mount point for a Streams Application Bundle (SAB file) in the streamsrun user account
+
+VOLUME /home/streamsrun/bundle
+
 # download and install a runtime subset of IBM Streams with either 'tar' or 'bsdtar'
 
 RUN curl -s $STREAMS_SUBSET_PACKAGE | tar -xz -C / --owner=streamsadmin --group=streamsadmin

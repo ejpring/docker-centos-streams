@@ -16,7 +16,7 @@ step() { echo ; echo -e "$*" ; }
 
 here=$( cd ${0%/*} ; pwd )
 
-# this URL points at the HTTP directory where Streams subset packages are stored
+# set this URL to point at the HTTP directory where Streams subset packages are stored
 
 streamsSubsetPackageLibraryURL=http://splanet02.watson.ibm.com:8080/upload/StreamsSubsetPackages
 

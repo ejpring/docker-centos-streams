@@ -29,7 +29,7 @@ if [[ ! -d $homeDirectory/streamsdev ]] ; then
     mkdir -p $homeDirectory/streamsdev || die "sorry, could not create 'streamsdev' home directory, $?"
 fi    
 
-# if the home directory is empty, fill it with basic Linux configuration files
+# if the home directory is empty, fill it with basic Linux and Xfce configuration files
 
 if [[ ! -f $homeDirectory/streamsdev/.bashrc ]] ; then
     step "initializing 'streamsdev' home directory in $homeDirectory/streamsdev ..."

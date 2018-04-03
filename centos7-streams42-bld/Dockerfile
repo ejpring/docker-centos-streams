@@ -3,7 +3,7 @@
 
 ################################################################################
 #
-# This Dockerfile builds an image containing CentOS 7 and Streams 4.2
+# This Dockerfile builds an image containing CentOS 7 and a subset of Streams 4.2
 # suitable for compiling Streams applications to be deployed elsewhere.  See the
 # README.md file for instructions on creating and using this image.
 #
