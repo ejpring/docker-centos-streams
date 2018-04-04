@@ -57,8 +57,9 @@ Before creating the container, change the parameters in this configuration file 
 
     $HOME/git/docker-centos-streams/config/centos7.cfg
 
-Then, to create the container, execute this script:
+Then, to create the container, execute these scripts:
 
+    $HOME/git/docker-centos-streams/centos7-streams42-dev/createDockerImage.sh
     $HOME/git/docker-centos-streams/centos7-streams42-dev/createDockerContainer.sh
 
 The container includes these accounts:
