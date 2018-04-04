@@ -8,8 +8,6 @@
 
 ################### parameters used in this script ############################
 
-set -o pipefail
-
 here=$( cd ${0%/*} ; pwd )
 
 imageName=centos7-base
@@ -26,8 +24,8 @@ dockerRunParameters=(
 
 ################### functions used in this script #############################
 
-die() { echo ; echo "$*" >&2 ; exit 1 ; }
-step() { echo ; echo -e "$*" ; }
+die() { echo ; echo -e "\033[1;31m$*\033[0m" >&2 ; exit 1 ; }
+step() { echo ; echo -e "\033[1;34m$*\033[0m" ; }
 
 ################################################################################
 

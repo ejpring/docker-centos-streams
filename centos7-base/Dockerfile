@@ -21,13 +21,17 @@ ARG USER_PASSWORD
 ARG ADMIN_PASSWORD
 ARG VNC_GEOMETRY
 
-# update RPMs in base package to current versions, but preserve the locales from the base image
+# update RPMs in base package to current versions, but preserve the UTF-8 locales from the base image
 
-RUN cp -p /usr/lib/locale/locale-archive /usr/lib/locale/locale-archive.original && \
-    yum -y update && \
+###RUN cp -p /usr/lib/locale/locale-archive /usr/lib/locale/locale-archive.original && \
+###    yum -y update && \
+###    yum clean all && \
+###    mv /usr/lib/locale/locale-archive /usr/lib/locale/locale-archive.updated && \
+###    cp -p /usr/lib/locale/locale-archive.original /usr/lib/locale/locale-archive
+
+RUN yum -y update && \
     yum clean all && \
-    mv /usr/lib/locale/locale-archive /usr/lib/locale/locale-archive.updated && \
-    cp -p /usr/lib/locale/locale-archive.original /usr/lib/locale/locale-archive
+    localedef --no-archive -i en_US -f UTF-8 en_US.UTF-8
 
 # install the X11 Window system, X fonts, the Xfce desktop, and some tools
 # and utilities and libraries that Streams depends upon

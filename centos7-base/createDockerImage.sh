@@ -7,8 +7,8 @@
 
 ################### functions used in this script #############################
 
-die() { echo ; echo -e "\e[1;31m$*\e[0m" >&2 ; exit 1 ; }
-step() { echo ; echo -e "\e[1;34m$*\e[0m" ; }
+die() { echo ; echo -e "\033[1;31m$*\033[0m" >&2 ; exit 1 ; }
+step() { echo ; echo -e "\033[1;34m$*\033[0m" ; }
 
 ################### parameters used in this script ############################
 
