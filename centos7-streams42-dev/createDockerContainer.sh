@@ -5,7 +5,7 @@
 
 ################################################################################
 #
-# This script builds an image for a Docker container. See README.md for details.
+# This script creates a Docker container from an image. See README.md for details.
 #
 ################################################################################
 

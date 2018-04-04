@@ -143,7 +143,7 @@ None of these scripts accept any arguments, but some of them have static paramet
 
 ### optionally install KDE desktop
 
-If you prefer to use the KDE desktop instead of Xfce, you can install it in the container by entering this command in a Linux Terminal window at a command prompt:
+If you prefer to use the KDE desktop instead of Xfce, you can install it in the container by executing this command in a Linux Terminal window at a command prompt:
 
     sudo yum group install kde
 
@@ -152,10 +152,20 @@ To switch from the Xfce desktop to KDE, edit the /home/streamsdev/.vnc/xstartup 
 
 ### optionally install Mongo database
 
-If you need the Mongo database, you can install it in the container by entering this command at a Linux Terminal window at a command prompt:
+If you need the Mongo database, you can install it in the container by executing this command at a Linux Terminal window at a command prompt:
 
     sudo yum install mongodb python-pymongo php-pecl-mongo
 
 
+### transfer the container to another machine
 
+If you want to use the container on another machine, you can export it to a compressed tarball by executing this script:
+
+    $HOME/git/docker-centos-streams/centos7-streams42-dev/exportDockerContainer.sh
+
+The 'centos7-streams42-dev.tar.gz' file produced by this script contains the image produced by the 'createDockerImage.sh' script and the configuration information added by the 'createDockerContainer.sh' script. The compressed tar file can be transferred to another machine like any other file.
+
+To restore the container on another machine, execute this command:
+
+    gunzip -c centos7-streams42-dev.tar.gz | docker import
 
