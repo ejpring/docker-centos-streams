@@ -10,5 +10,4 @@
 
 # ignore these files, too
 *.log
-
-
+DockerContainer.*.tar.gz

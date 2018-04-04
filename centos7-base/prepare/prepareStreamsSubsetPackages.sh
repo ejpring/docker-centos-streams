@@ -34,14 +34,14 @@ step "verifying Streams subset package server is writeable ..."
 
 timestampFilename=StreamsSubset.timestamp
 date "+%Y-%m-%d %H:%M:%S" >/tmp/$timestampFilename || die "sorry, could not create /tmp/$timestampFilename"
-scp -p /tmp/$timestampFilename $streamsSubsetPackageServerSCP/$timestampFilename || die "sorry, could not write to Streams subset package server $streamsSubsetPackageServer"
+scp -p /tmp/$timestampFilename $streamsSubsetPackageServerSCP || die "sorry, could not write to Streams subset package server $streamsSubsetPackageServer"
 rm /tmp/$timestampFilename || die "sorry, could not erase /tmp/$timestampFilename"
 
 step "installing Streams from $streamsInstallPackageServerURL/$streamsInstallPackage ..."
 
 $here/script/installStreamsProduct.sh $streamsInstallPackageServerURL/$streamsInstallPackage || exit $?
 
-step "storing Streams subsets at $streamsSubsetPackageServer ..."
+step "storing Streams subsets at $streamsSubsetPackageServerSCP ..."
 
 $here/script/prepareStreamsDevelopmentSubset.sh $streamsSubsetPackageServerSCP || exit $?
 $here/script/prepareStreamsBuildSubset.sh $streamsSubsetPackageServerSCP || exit $?

@@ -20,7 +20,9 @@ here=$( cd ${0%/*} ; pwd )
 
 source $here/../config/centos7.cfg
 
-tarballName=centos7-streams$streamsVersion-dev.tar.gz
+containerName=centos7-streams$streamsVersion-dev
+
+tarballFilename=DockerContainer.$containerName.tar.gz
 
 ###############################################################################
 
@@ -32,9 +34,9 @@ docker info 1>/dev/null || die "sorry, Docker is not running"
 
 # import container from a compressed tarball
 
-step "importing container from a compressed tarball ..."
-gunzip -c $tarballName | docker import || die "sorry, could not decompress and import '$tarballName', $?"
-echo "imported container from $tarballName.tar.gz"
+step "importing container from a compressed tarball $tarballFilename ..."
+gunzip -c $tarballFilename | docker import || die "sorry, could not decompress and import '$tarballFilename', $?"
+echo "imported container from $tarballFilename"
 
 exit 0
 

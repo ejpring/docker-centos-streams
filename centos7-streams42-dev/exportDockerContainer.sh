@@ -22,6 +22,8 @@ source $here/../config/centos7.cfg
 
 containerName=centos7-streams$streamsVersion-dev
 
+tarballFilename=DockerContainer.$containerName.tar.gz
+
 ###############################################################################
 
 # make sure Docker is installed and running 
@@ -30,11 +32,12 @@ step "verifying Docker is available ..."
 which docker 1>/dev/null || die "sorry, 'docker' command not found"
 docker info 1>/dev/null || die "sorry, Docker is not running"
 
-# export container to a compressed tarball
-
 step "exporting container $containerName to a compressed tarball ..."
-docker export $containerName | gzip >$containerName.tar.gz || die "sorry, could not export and compress containiner '$containerName', $?"
-echo "exported container $containername to $containerName.tar.gz"
+docker export $containerName | gzip >$tarballFilename || die "sorry, could not export and compress containiner '$containerName', $?"
+echo "exported container $containername to $tarballFilename"
+
+step "copying compressed tarball $tarballFilename to $streamsSubsetPackageServerSCP ..."
+scp -p $tarballFilename $streamsSubsetPackageServerSCP || die "sorry, could not copy compressed tarball $tarballFilename to $streamsSubsetPackageServer, $?"
 
 exit 0
 

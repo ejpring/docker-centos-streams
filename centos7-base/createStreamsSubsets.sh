@@ -12,7 +12,7 @@ here=$( cd ${0%/*} ; pwd )
 
 imageName=centos7-base
 
-script=./prepare/prepareStreamsSubsetPackages.sh
+script=$here/prepare/prepareStreamsSubsetPackages.sh
 
 dockerRunParameters=(
     -it
