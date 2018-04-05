@@ -3,7 +3,7 @@
 ** All Rights Reserved
 */
 
-namespace SampleStreamsApplication;
+namespace SimpleStreamsApplication;
 
 composite Main {
 

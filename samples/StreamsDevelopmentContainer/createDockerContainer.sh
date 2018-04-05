@@ -48,7 +48,7 @@ docker info 1>/dev/null || die "sorry, Docker is not running"
 
 step "creating container $containerName from image $imageURL ..."
 ( IFS=$'\n' ; printf "\ncontainer parameters:\n${dockerCreateParameters[*]}\n\n" )
-docker create ${dockerCreateParameters[*]} $imageURL supervisord || die "sorry, could not create containiner '$containerName', $?"
+docker create ${dockerCreateParameters[*]} $imageName supervisord || die "sorry, could not create containiner '$containerName', $?"
 
 # remove any stale public SSH keys from old containers
 

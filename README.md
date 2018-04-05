@@ -22,7 +22,7 @@ The Docker images are created automatically from Streams install packages by exe
 
 * ['createEverything.sh' script](./createEverything.sh)
 
-This procedure needs access a network server with HTTP and SFTP, as specified in this configuration file:
+This procedure needs access a network server via HTTP and SFTP, as specified in this configuration file:
 
 * ['centos7.cfg' file](./config/centos7.cfg)
 
