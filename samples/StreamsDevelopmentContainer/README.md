@@ -18,7 +18,7 @@ The container provides an Xfce desktop for those who prefer to develop applicati
 
 To build the container, Docker will need an image of a subset of IBM Streams suitable for application development. See the ['centos7-base' directory](../../centos7-base) directory for instructions on preparing images of IBM Streams.
 
-The image for this container is named 'centos7-streams42-dev'. It is stored on a network server in a compressed tarball named 'DockerImage.centos7-streams42-dev.tar.gz', which is about 2.8 GB in size. You will need to download this image into docker. After that, it takes only a few seconds to create a container, which will be about 5.3 GB in size.
+The image for this container is named 'centos7-streams42-dev'. It is stored on a network server in a compressed tarball named 'DockerImage.centos7-streams42-dev.tar.gz', which is about 2.8 GB in size. You will need to download this image into Docker. After that, it takes only a few seconds to create a container, which will be about 5.3 GB in size.
 
 
 ### quick start procedure
@@ -42,7 +42,7 @@ Install [Docker for Windows](https://docs.docker.com/windows/) or [Docker for Ma
 
 The default processor and memory resources Docker allocates may not be sufficient for Streams application development. If necessary, you can increse them with the Docker 'Preferences' panel, like this:
 
-![Docker preferences->General panel](../README.images/Docker-preferences-general-panel.png)
+![Docker preferences->General panel](../../README.images/Docker-preferences-general-panel.png)
 
 
 ### load an image
@@ -97,13 +97,13 @@ The script will create the directory $HOME/dockerhome.centos7/streamsdev, if it 
 
 After the container and home directory have been created, you can start the container by executing this command:
 
-    docker start StreamsForDocker
+    docker start StreamsDevelopmentContainer
 
 The home directory of the 'streamsdev' user account will be mounted from the '$HOME/dockerhome.centos7/streamsdev' directory in the host computer's file system. 
 
 You can use the Xfce desktop of the 'streamsdev' user account by connecting a VNC viewer to the address 'localhost:1' or 'localhost:5901', depending on which viewer you use:
 
-![VNC Viewer connect panel](../README.images/VNC-Viewer-connect-panel.png)
+![VNC Viewer connect panel](../../README.images/VNC-Viewer-connect-panel.png)
 
 Or, you can login to the 'streamsdev' user account with SSH by typing this command at a prompt in a Terminal window:
 
@@ -111,7 +111,9 @@ Or, you can login to the 'streamsdev' user account with SSH by typing this comma
 
 When you are finished with the container, You can stop it by executing this command:
 
-    docker stop StreamsForDocker
+    docker stop StreamsDevelopmentContainer
+
+Whatever work you did in the container while it was running will be retained, and will be available in the container when you start it again. Any changes you made in the home directory of the 'streamsdev' user account are available after the container has stopped, in the directory $HOME/dockerhome.centos7/streamsdev created by the 'createHomeDirectory.sh' script.
 
 
 ### use the container
