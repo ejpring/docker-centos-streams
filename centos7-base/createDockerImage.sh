@@ -33,6 +33,13 @@ step "verifying Docker is available ..."
 which docker 1>/dev/null || die "sorry, 'docker' command not found"
 docker info 1>/dev/null || die "sorry, Docker is not running"
 
+# skip this if the image already exists
+
+if [[ $( docker images -a -q $containerName ) != "" ]] ; then
+    echo "image $imageName already exists"
+    exit 0
+fi
+
 # build an image from the Dockerfile using the parameters above
 
 step "building image '$imageName' from Dockerfile $here/Dockerfile ..."
