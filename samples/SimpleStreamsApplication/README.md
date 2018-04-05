@@ -20,9 +20,9 @@ Install [Docker for Windows](https://docs.docker.com/windows/) or [Docker for Ma
 
 If the Streams subset images are not aleady in Docker, you can load them from a network server by executing these commands:
 
-    curl http://servername/directoryname/DockerImage.centos7-streams4242-bld.tar.gz | docker load
+    curl http://servername/directoryname/DockerImage.centos7-streams42-bld.tar.gz | docker load
 
-    curl http://servername/directoryname/DockerImage.centos7-streams4242-run.tar.gz | docker load
+    curl http://servername/directoryname/DockerImage.centos7-streams42-run.tar.gz | docker load
 
 
 ### compile the sample application

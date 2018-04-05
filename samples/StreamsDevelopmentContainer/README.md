@@ -51,7 +51,7 @@ The container will be created from an image named 'centos7-streams42-dev' that c
 
 After the 'centos7-streams42-dev' image has been created and saved on a network server, you can load it onto this machine by executing this command:
 
-    curl http://servername/directoryname/DockerImage.centos7-streams4242-dev.tar.gz | docker load
+    curl http://servername/directoryname/DockerImage.centos7-streams42-dev.tar.gz | docker load
 
 
 ### create a container
@@ -120,7 +120,7 @@ Whatever work you did in the container while it was running will be retained, an
 
 After starting the container and connecting a VNC viewer to its Xfce desktop, use the icons at the top of the desktop to launch common development tools:
 
-![Xfce toolbar icons](../README.images/Xfce-toolbar-icons.png)
+![Xfce toolbar icons](../../README.images/Xfce-toolbar-icons.png)
 
 * the 'Display' icon changes the size of the Xfce desktop
 * the 'Terminal' icon opens a Bash window with a command-line prompt
