@@ -24,8 +24,6 @@ $here/centos7-base/createStreamsSubsets.sh
 
 $here/centos7-streams42-dev/createDockerImage.sh
 $here/centos7-streams42-dev/storeDockerImage.sh
-#$here/centos7-streams42-dev/createDockerContainer.sh
-#$here/centos7-streams42-dev/storeDockerContainer.sh
 
 $here/centos7-streams42-bld/createDockerImage.sh
 $here/centos7-streams42-bld/storeDockerImage.sh
