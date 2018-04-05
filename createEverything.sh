@@ -14,27 +14,29 @@ step() { echo ; echo -e "\033[1;34m$*\033[0m" ; }
 
 ################################################################################
 
+set -e 
+
 here=$( cd ${0%/*} ; pwd )
 
-$here/centos7-base/createDockerImage.sh || die "sorry, could not create centos7-base image"
-$here/centos7-base/createDockerContainer.sh || die "sorry, could not create centos7-base container"
-$here/centos7-base/createStreamsSubsets.sh || die "sorry, could not create Streams subsets"
+$here/centos7-base/createDockerImage.sh
+$here/centos7-base/createDockerContainer.sh
+$here/centos7-base/createStreamsSubsets.sh
 
-$here/centos7-streams42-dev/createDockerImage.sh || die "sorry, could not create centos7-streams42-dev image"
-$here/centos7-streams42-dev/storeDockerImage.sh || die "sorry, could not store centos7-streams42-dev image"
-#$here/centos7-streams42-dev/createDockerContainer.sh || die "sorry, could not create centos7-streams42-dev container"
-#$here/centos7-streams42-dev/storeDockerContainer.sh || die "sorry, could not store centos7-streams42-dev container"
+$here/centos7-streams42-dev/createDockerImage.sh
+$here/centos7-streams42-dev/storeDockerImage.sh
+#$here/centos7-streams42-dev/createDockerContainer.sh
+#$here/centos7-streams42-dev/storeDockerContainer.sh
 
-$here/centos7-streams42-bld/createDockerImage.sh || die "sorry, could not create centos7-streams42-bld image"
-$here/centos7-streams42-bld/storeDockerImage.sh || die "sorry, could not store centos7-streams42-bld image"
+$here/centos7-streams42-bld/createDockerImage.sh
+$here/centos7-streams42-bld/storeDockerImage.sh
 
-$here/centos7-streams42-run/createDockerImage.sh || die "sorry, could not create centos7-streams42-run image"
-$here/centos7-streams42-run/storeDockerImage.sh || die "sorry, could not store centos7-streams42-run image"
+$here/centos7-streams42-run/createDockerImage.sh
+$here/centos7-streams42-run/storeDockerImage.sh
 
-$here/samples/StreamsDevelopmentContainer/createDockerContainer.sh || die "sorry, could not create Streams Development Container"
+$here/samples/StreamsDevelopmentContainer/createDockerContainer.sh
 
-$here/samples/SimpleStreamsApplication/buildStreamsApplication.sh || die "sorry, could not build simple Streams application"
-$here/samples/SimpleStreamsApplication/runStreamsApplication.sh || die "sorry, could not run simple Streams application"
+$here/samples/SimpleStreamsApplication/buildStreamsApplication.sh
+$here/samples/SimpleStreamsApplication/runStreamsApplication.sh
 
 step "Done."
 exit 0
