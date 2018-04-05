@@ -36,7 +36,6 @@ step "saving image $imageName to $streamsSubsetPackageServerSCP/$tarballFilename
 IFS=: read -a fields <<<"$streamsSubsetPackageServerSCP"
 docker image save $imageName | gzip -c | ssh -x ${fields[0]} "cat >${fields[1]}/$tarballFilename" || die "sorry, could not save image '$imageName', $?"
 echo "$imageName saved as $streamsSubsetPackageServerSCP/$tarballFilename"
-
 exit 0
 
 

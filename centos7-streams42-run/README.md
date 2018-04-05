@@ -60,3 +60,13 @@ After creating the image, use it to run Streams Application Bundles (SAB files).
 
 The compiler produces Streams Application Bundles, which are SAB files stored in the 'output' subdirectory of the application directory. The ['centos7-streams42-bld' image](../centos7-streams42-bld) can be used to compile Streams applications.
 
+
+### use the image on another machine
+
+If you want to use the image on another machine, you can save it as a compressed tarball on a network server by executing this script:
+
+    $HOME/git/docker-centos-streams/centos7-streams42-run/saveDockerImage.sh
+
+The 'DockerImage.centos7-streams42-run.tar.gz' file produced by this script contains the image produced by the 'createDockerImage.sh' script. It can be loaded from a network server on another machine like this:
+
+    curl http://splanet02.watson.ibm.com:8080/upload/StreamsSubsetPackages/DockerImage.centos7-streams42-run.tar.gz | docker load

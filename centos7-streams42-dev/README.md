@@ -49,7 +49,7 @@ The default processor and memory resources Docker allocates are insufficient for
 ![Docker preferences->General panel](../README.images/Docker-preferences-general-panel.png)
 
 
-### create a container
+### create an image and a container
 
 Clone or download the 'git' repository ['docker-centos-streams'](https://github.com/ejpring/docker-centos-streams).
 
@@ -157,15 +157,12 @@ If you need the Mongo database, you can install it in the container by executing
     sudo yum install mongodb python-pymongo php-pecl-mongo
 
 
-### transfer the container to another machine
+### use the image on another machine
 
-If you want to use the container on another machine, you can export it to a compressed tarball by executing this script:
+If you want to use the image to create a container on another machine, you can save it as a compressed tarball on a network server by executing this script:
 
-    $HOME/git/docker-centos-streams/centos7-streams42-dev/exportDockerContainer.sh
+    $HOME/git/docker-centos-streams/centos7-streams42-dev/saveDockerImage.sh
 
-The 'centos7-streams42-dev.tar.gz' file produced by this script contains the image produced by the 'createDockerImage.sh' script and the configuration information added by the 'createDockerContainer.sh' script. The compressed tar file can be transferred to another machine like any other file.
+The 'DockerImage.centos7-streams42-dev.tar.gz' file produced by this script contains the image produced by the 'createDockerImage.sh' script. It can be used with the 'docker create' command to create a container on another machine.
 
-To restore the container on another machine, execute this command:
-
-    gunzip -c centos7-streams42-dev.tar.gz | docker import
 
