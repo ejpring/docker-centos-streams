@@ -20,9 +20,9 @@ here=$( cd ${0%/*} ; pwd )
 
 source $here/../config/centos7.cfg
 
-imageName=centos7-streams$streamsVersion-run
+containerName=centos7-streams$streamsVersion-dev
 
-tarballFilename=DockerImage.$imageName.tar.gz
+tarballFilename=DockerContainer.$containerName.tar.gz
 
 ###############################################################################
 
@@ -32,17 +32,18 @@ step "verifying Docker is available ..."
 which docker 1>/dev/null || die "sorry, 'docker' command not found"
 docker info 1>/dev/null || die "sorry, Docker is not running"
 
-step "saving image $imageName to $streamsSubsetPackageServerSCP/$tarballFilename ..."
+step "storing container $containerName on $streamsSubsetPackageServerSCP/$tarballFilename ..."
 IFS=: read -a fields <<<"$streamsSubsetPackageServerSCP"
-docker image save $imageName | gzip -c | ssh -x ${fields[0]} "cat >${fields[1]}/$tarballFilename" || die "sorry, could not save image '$imageName', $?"
-echo "$imageName saved as $streamsSubsetPackageServerSCP/$tarballFilename"
+docker export $containerName | gzip -c | ssh -x ${fields[0]} "cat >${fields[1]}/$tarballFilename" || die "sorry, could not export containiner '$containerName', $?"
+echo "$containerName exported to $streamsSubsetPackageServerSCP/$tarballFilename"
+
 exit 0
 
 
 
-step "saving image $imageName to a compressed tarball ..."
-docker image save $imageName | gzip >$tarballFilename || die "sorry, could not save and compress image '$imageName', $?"
-echo "saved image $imageName to $tarballFilename"
+step "exporting container $containerName to a compressed tarball ..."
+docker export $containerName | gzip >$tarballFilename || die "sorry, could not export and compress containiner '$containerName', $?"
+echo "exported container $containerName to $tarballFilename"
 
 step "copying compressed tarball $tarballFilename to $streamsSubsetPackageServerSCP ..."
 scp -p $tarballFilename $streamsSubsetPackageServerSCP || die "sorry, could not copy compressed tarball $tarballFilename to $streamsSubsetPackageServer, $?"

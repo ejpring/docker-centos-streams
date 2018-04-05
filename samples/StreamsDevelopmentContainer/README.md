@@ -2,9 +2,9 @@ Copyright &copy; 2016, 2018  International Business Machines Corporation
 All Rights Reserved
 
 
-## Docker container 'centos7-streams42-dev'
+## Streams Development Container
 
-This repository contains a Dockerfile and associated scripts, intended for use with [Docker](https://www.docker.com/). It creates a container for [IBM Streams](http://ibmstreams.github.io/) application development, consisting of:
+This repository contains scripts that creates a [Docker container](https://www.docker.com/) for [IBM Streams](http://ibmstreams.github.io/) application development, consisting of:
 
 * a development subset of **IBM Streams release 4.2**
 * CentOS release 7
@@ -16,51 +16,53 @@ This repository contains a Dockerfile and associated scripts, intended for use w
 
 The container provides an Xfce desktop for those who prefer to develop applications with GUI tools, including Streams Studio, and also supports SSH access for those who prefer command-line tools. The host directory of the user account in the container is mounted from a directory in the host computer's file system, initialized with a basic Xfce configuration.
 
-To build the container, Docker will need access to an HTTP server where subsets of IBM Streams have been stored. See ['centos7-base'](../centos7-base) for instructions on preparing subsets of IBM Streams.
+To build the container, Docker will need an image of a subset of IBM Streams suitable for application development. See the ['centos7-base' directory](../../centos7-base) directory for instructions on preparing images of IBM Streams.
 
-Building the container will take about sixteen minutes with a fast network connection. It will be about 5.3 GB in size.
+The image for this container is named 'centos7-streams42-dev'. It is stored on a network server in a compressed tarball named 'DockerImage.centos7-streams42-dev.tar.gz', which is about 2.8 GB in size. You will need to download this image into docker. After that, it takes only a few seconds to create a container, which will be about 5.3 GB in size.
 
 
 ### quick start procedure
 
 The procedure for building the container is described in detail below, but if you are familiar with Docker, then you may want to follow this procedure to get started quickly:
 
-* prepare Streams subsets (see the ['centos7-base' directory](../centos7-base))
 * install [Docker](https://www.docker.com) and increase its processor and memory resources
-* get the ['docker-centos-streams'](https://github.com/ejpring/docker-centos-streams/) repository
-* execute the 'createDockerContainer.sh' script and then start the container
+* load a Docker image from a network server
+* execute the 'createDockerContainer.sh' script
+* execute the 'createHomeDirectory.sh' script 
+* start the 'StreamsForDocker' container
 * login to the container's Xfce desktop by connecting a VNC viewer to 'localhost:5901'
-* login to the container's command line with 'ssh -p 2222 streamsdev@localhost'
+* or, login to the container's command line with 'ssh -p 2222 streamsdev@localhost'
 
 All passwords in the container are initially set to 'password'.
-
-
-### prepare Streams subsets
-
-The container will need only a subset of the Streams product for application development. This subset must be prepared in advance and stored on an HTTP server accessible by Docker. To prepare Streams subsets, please see the instructions in the ['centos7-base' directory](../centos7-base).
 
 
 ### install Docker
 
 Install [Docker for Windows](https://docs.docker.com/windows/) or [Docker for Mac](https://docs.docker.com/mac/) (and see [Docker on Windows](https://developer.ibm.com/bluemix/2015/04/16/installing-docker-windows-fixes-common-problems/) for help with common problems, if needed).
 
-The default processor and memory resources Docker allocates are insufficient for Streams application development. Use the Docker 'Preferences' panel to increase them as much as your computer's resources allow, like this:
+The default processor and memory resources Docker allocates may not be sufficient for Streams application development. If necessary, you can increse them with the Docker 'Preferences' panel, like this:
 
 ![Docker preferences->General panel](../README.images/Docker-preferences-general-panel.png)
 
 
-### create an image and a container
+### load an image
+
+The container will be created from an image named 'centos7-streams42-dev' that contains CentOS and a subset of IBM Streams suitable for application development. Instructions for creating the image are in the 'git' repository ['docker-centos-streams'](https://github.com/ejpring/docker-centos-streams).
+
+After the 'centos7-streams42-dev' image has been created and saved on a network server, you can load it onto this machine by executing this command:
+
+    curl http://servername/directoryname/DockerImage.centos7-streams4242-dev.tar.gz | docker load
+
+
+### create a container
 
 Clone or download the 'git' repository ['docker-centos-streams'](https://github.com/ejpring/docker-centos-streams).
 
-Before creating the container, change the parameters in this configuration file to match your environment:
+Before creating the container, change the parameters in this script to match your environment:
 
-    $HOME/git/docker-centos-streams/config/centos7.cfg
+    $HOME/git/docker-centos-streams/samples/StreamsDevelopmentContainer/createDockerContainer.sh
 
-Then, to create the container, execute these scripts:
-
-    $HOME/git/docker-centos-streams/centos7-streams42-dev/createDockerImage.sh
-    $HOME/git/docker-centos-streams/centos7-streams42-dev/createDockerContainer.sh
+Then, to create the container, execute that script.
 
 The container includes these accounts:
 
@@ -86,7 +88,7 @@ The container will mount the home directory for the 'streamsdev' user account fr
 
 To create a home directory for the 'streamsdev' user account, execute this script:
 
-    $HOME/git/docker-centos-streams/centos7-streams42-dev/createHomeDirectory.sh
+    $HOME/git/docker-centos-streams/samples/StreamsDevelopmentContainer/createHomeDirectory.sh
 
 The script will create the directory $HOME/dockerhome.centos7/streamsdev, if it does not already exist, and initialize it with configuration files for Linux, the Xfce desktop, and SSH, if they do not already exist.
 
@@ -95,7 +97,7 @@ The script will create the directory $HOME/dockerhome.centos7/streamsdev, if it 
 
 After the container and home directory have been created, you can start the container by executing this command:
 
-    docker start centos7-streams42-dev
+    docker start StreamsForDocker
 
 The home directory of the 'streamsdev' user account will be mounted from the '$HOME/dockerhome.centos7/streamsdev' directory in the host computer's file system. 
 
@@ -109,7 +111,7 @@ Or, you can login to the 'streamsdev' user account with SSH by typing this comma
 
 When you are finished with the container, You can stop it by executing this command:
 
-    docker stop centos7-streams42-dev
+    docker stop StreamsForDocker
 
 
 ### use the container
@@ -155,14 +157,4 @@ To switch from the Xfce desktop to KDE, edit the /home/streamsdev/.vnc/xstartup 
 If you need the Mongo database, you can install it in the container by executing this command at a Linux Terminal window at a command prompt:
 
     sudo yum install mongodb python-pymongo php-pecl-mongo
-
-
-### use the image on another machine
-
-If you want to use the image to create a container on another machine, you can store it as a compressed tarball on a network server by executing this script:
-
-    $HOME/git/docker-centos-streams/centos7-streams42-dev/storeDockerImage.sh
-
-The 'DockerImage.centos7-streams42-dev.tar.gz' file produced by this script contains the image produced by the 'createDockerImage.sh' script. It can be used with the 'docker create' command to create a container on another machine.
-
 

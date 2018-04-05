@@ -20,7 +20,7 @@ here=$( cd ${0%/*} ; pwd )
 
 source $here/../config/centos7.cfg
 
-imageName=centos7-streams$streamsVersion-bld
+imageName=centos7-streams$streamsVersion-run
 
 tarballFilename=DockerImage.$imageName.tar.gz
 
@@ -32,11 +32,10 @@ step "verifying Docker is available ..."
 which docker 1>/dev/null || die "sorry, 'docker' command not found"
 docker info 1>/dev/null || die "sorry, Docker is not running"
 
-step "saving image $imageName to $streamsSubsetPackageServerSCP/$tarballFilename ..."
+step "store image $imageName on $streamsSubsetPackageServerSCP/$tarballFilename ..."
 IFS=: read -a fields <<<"$streamsSubsetPackageServerSCP"
 docker image save $imageName | gzip -c | ssh -x ${fields[0]} "cat >${fields[1]}/$tarballFilename" || die "sorry, could not save image '$imageName', $?"
 echo "$imageName saved as $streamsSubsetPackageServerSCP/$tarballFilename"
-
 exit 0
 
 

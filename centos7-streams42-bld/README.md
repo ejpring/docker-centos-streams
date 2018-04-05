@@ -64,9 +64,9 @@ The compiler produces Streams Application Bundles, which are SAB files stored in
 
 ### use the image on another machine
 
-If you want to use the image on another machine, you can save it as a compressed tarball on a network server by executing this script:
+If you want to use the image on another machine, you can store it as a compressed tarball on a network server by executing this script:
 
-    $HOME/git/docker-centos-streams/centos7-streams42-bld/saveDockerImage.sh
+    $HOME/git/docker-centos-streams/centos7-streams42-bld/storeDockerImage.sh
 
 The 'DockerImage.centos7-streams42-bld.tar.gz' file produced by this script contains the image produced by the 'createDockerImage.sh' script. It can be loaded from a network server on another machine like this:
 

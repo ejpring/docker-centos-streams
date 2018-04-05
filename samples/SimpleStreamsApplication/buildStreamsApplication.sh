@@ -27,7 +27,7 @@ here=$( cd ${0%/*} ; pwd )
 #dockerImageName=centos7-streams4241-bld
 dockerImageName=centos7-streams4242-bld
 
-applicationNamespace=SampleStreamsApplication
+applicationNamespace=SimpleStreamsApplication
 
 applicationComposite=Main
 

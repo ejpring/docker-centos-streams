@@ -27,7 +27,7 @@ here=$( cd ${0%/*} ; pwd )
 #dockerImageName=centos7-streams4241-run
 dockerImageName=centos7-streams4242-run
 
-applicationBundle=$here/output/SampleStreamsApplication.Main.sab
+applicationBundle=$here/output/SimpleStreamsApplication.Main.sab
 
 applicationDataDirectory=$here/data
 
