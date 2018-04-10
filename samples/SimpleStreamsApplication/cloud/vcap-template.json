@@ -1,0 +1,12 @@
+{
+    "streaming-analytics": [
+        {
+            "name":
+                "... paste IBM Cloud Streaming Analytics service name here, in quotes ...",
+            "credentials":          
+            {
+                ... paste IBM Cloud Streaming Analytics service credentials here, in braces ...
+            }
+        }               
+    ]
+}

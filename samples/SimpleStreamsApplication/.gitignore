@@ -31,9 +31,13 @@ javacore.*
 __pycache__/
 
 # ignore these log files
+logs.*.tar.gz
 *.log
 *.trace
 *.tar.gz
+
+# don't push this file to 'git'
+vcap.json
 
 # ignore this file created by Mac OS:
 .DS_Store

@@ -32,4 +32,8 @@ The ['centos7-streams42-dev' image](./centos7-streams42-dev) has a full Streams 
 
 Alternatively, the ['centos7-streams42-bld'](./centos7-streams42-dev) and ['centos7-streams42-run'](./centos7-streams42-dev) images can be used to compile and run Streams applications without logging into a container. For an example of how to develop Streams applications in this way, see:
 
-* [simple Streams application](./samples/SimpleStreamsApplication)
+* [compiling and running a Streams application with Docker](./samples/SimpleStreamsApplication)
+
+You can also run Streams applications remotely in the Streaming Analytics service on [IBM Cloud](https://www.ibm.com/cloud/). For an example of running a compiled Streams application on IBM Cloud, see:
+
+* [running a Streams application on IBM Cloud](./samples/SimpleStreamsApplication/cloud)

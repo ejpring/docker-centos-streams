@@ -8,8 +8,8 @@ namespace SimpleStreamsApplication;
 composite Main {
 
   param
-  expression<rstring>            $inputFilename:                         getSubmissionTimeValue("inputFilename",     "./etc/poem.in");
-  expression<rstring>            $outputFilename:                        getSubmissionTimeValue("outputFilename",    "./etc/poem.out");
+  expression<rstring>            $inputFilename:                         getApplicationDir() + "/etc/poem.in";
+  expression<rstring>            $outputFilename:                        getApplicationDir() + "/etc/poem.out";
   expression<int32>              $iterationCount:                 (int32)getSubmissionTimeValue("iterationCount",    "1");
   expression<float64>            $iterationInterval:            (float64)getSubmissionTimeValue("iterationInterval", "1.0");
   expression<rstring>            $stringParameter:                       getSubmissionTimeValue("stringParameter",   "");

@@ -29,11 +29,7 @@ dockerImageName=centos7-streams4242-run
 
 applicationBundle=$here/output/SimpleStreamsApplication.Main.sab
 
-applicationDataDirectory=$here/data
-
-applicationSubmissionTimeParameterList=(
-    inputFilename=/home/streamsrun/data/poem.in
-    outputFilename=/home/streamsrun/data/poem.out
+applicationParameters=(
     "\"stringParameter=Hello, world\""
     integerParameter=42
     floatParameter=3.14159
@@ -45,7 +41,6 @@ applicationSubmissionTimeParameterList=(
 dockerRunParameterList=(
     --rm
     -v $( dirname $applicationBundle ):/home/streamsrun/bundle:ro
-    -v $applicationDataDirectory:/home/streamsrun/data:rw
 )
 
 traceLevel=3 # ... 0 for off, 1 for error, 2 for warn, 3 for info, 4 for debug, 5 for trace
@@ -58,19 +53,18 @@ step "verifying Docker is available ..."
 which docker 1>/dev/null || die "sorry, 'docker' command not found"
 docker info 1>/dev/null || die "sorry, Docker is not running"
 
-# make sure application bundle and data directory exist
+# make sure application bundle exists
 
 [[ -f $applicationBundle ]] || die "sorry, could not find Streams application bundle $applicationBundle, $?"
-[[ -d $applicationDataDirectory ]] || die "sorry, could not find Streams application data directory $application/DataDirectory, $?"
 
 # run the Streams application
 
-( IFS=$'\n' ; echo -e "\nsubmission-time parameters:\n${applicationSubmissionTimeParameterList[*]}" )
+( IFS=$'\n' ; echo -e "\nsubmission-time parameters:\n${applicationParameters[*]}" )
 
 step "running Streams application bundle $applicationBundle ..."
 bundleName=$( basename $applicationBundle )
 #docker run -it ${dockerRunParameterList[*]} $dockerImageName
-docker run ${dockerRunParameterList[*]} $dockerImageName /sbin/runuser -l streamsrun -c "java -jar /home/streamsrun/bundle/$bundleName -t $traceLevel ${applicationSubmissionTimeParameterList[*]}" || die "Sorry, could not run Streams application bundle $streamsApplicationBundle, $?" 
+docker run ${dockerRunParameterList[*]} $dockerImageName /sbin/runuser -l streamsrun -c "java -jar /home/streamsrun/bundle/$bundleName -t $traceLevel ${applicationParameters[*]}" || die "Sorry, could not run Streams application bundle $streamsApplicationBundle, $?" 
 
 exit 0
 
