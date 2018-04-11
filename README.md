@@ -34,6 +34,6 @@ Alternatively, the ['centos7-streams42-bld'](./centos7-streams42-dev) and ['cent
 
 * [compiling and running a Streams application with Docker](./samples/SimpleStreamsApplication)
 
-You can also run Streams applications remotely in the Streaming Analytics service on [IBM Cloud](https://www.ibm.com/cloud/). For an example of running a compiled Streams application on IBM Cloud, see:
+You can also run Streams applications remotely in the [Streaming Analytics service](https://console.bluemix.net/docs/services/StreamingAnalytics/) on [IBM Cloud](https://www.ibm.com/cloud/). For an example of running a compiled Streams application on IBM Cloud, see:
 
-* [running a Streams application on IBM Cloud](./samples/SimpleStreamsApplication/cloud)
+* [running a Streams application on IBM Cloud](./samples/SimpleStreamsApplication)

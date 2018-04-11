@@ -45,29 +45,29 @@ After creating the Docker image, before running the application, change the para
 
 ### run the sample application on IBM Cloud
 
-Alternatively, you can create a Streaming Analytics service on IBM Cloud to run Streams applications remotely. See [Getting Started with Streaming Analytics](https://console.bluemix.net/docs/services/StreamingAnalytics/index.html) for an introduction.
+Alternatively, you can create a Streaming Analytics service on IBM Cloud to run Streams applications remotely. See [Getting Started with Streaming Analytics](https://console.bluemix.net/docs/services/StreamingAnalytics/) for an introduction.
 
 To create a Streaming Analytics service, go to your [IBM Cloud dashboard](https://console.bluemix.net/dashboard/apps) and click 'Create Resource'. Search for 'Streaming Analytics', click on it, select the 'Beta - enhanced' plan, and click 'Create'.
 
-To use your Streaming Analytics service from outside IBM Cloud, you will need to get credentials for it and store them locally. To create credentials, go to your [IBM Cloud dashboard](https://console.bluemix.net/dashboard/apps) again and click on your service, then click on 'Service Credentials', then click on 'New Credentials'. Fill in the form and click 'Add', then click on 'View Credentials', then click the 'copy to clipboard' icon.  Then use any text editor to open the file ['vcap-template.json](./vcap-template.json) in this directory', fill it in as indicated by the comments, and save the file as 'vcap.json' in this directory.
+To use your Streaming Analytics service from outside IBM Cloud, you will need to get credentials for it and store them locally. To create credentials, go to your [IBM Cloud dashboard](https://console.bluemix.net/dashboard/apps) again and click on your service, then click on 'Service Credentials', then click on 'New Credentials'. Fill in the form and click 'Add', then click on 'View Credentials', then click the 'copy to clipboard' icon.  Then use any text editor to open the file ['vcap-template.json'](./cloud/vcap-template.json) in this directory', fill it in as indicated by the comments, and save the file as 'vcap.json' in this directory.
 
-The service can be managed remotely via the [Streaming Analytics REST API](https://console.bluemix.net/apidocs/220-streaming-analytics). If you have installed Python version 3, you  can install [IBM Streams Python support](http://ibmstreams.github.io/streamsx.topology/doc/pythondoc/index.html) by executing this command:
+The service can be managed remotely via the [Streaming Analytics REST API](https://console.bluemix.net/apidocs/220-streaming-analytics). If you have installed Python version 3, you  can install [IBM Streams Python support](http://ibmstreams.github.io/streamsx.topology/doc/releases/1.9/pythondoc/) by executing this command:
 
     pip install streamsx==1.9.0a2
 
-Then, use these scripts at a command prompt to manage your Streaming Analytics service:
+Then, use these scripts in the ['cloud' subdirectory](./cloud) at a command prompt to manage your Streaming Analytics service:
 
-* [python3 startStreamsService.py](startStreamsService.py) starts the Streaming Analytics service
+* [python3 startStreamsService.py](./cloud/startStreamsService.py) starts the Streaming Analytics service
 
-* [python3 checkStreamsService.py](checkStreamsService.py) displays the current status of the service 
+* [python3 checkStreamsService.py](./cloud/checkStreamsService.py) displays the current status of the service 
 
-* [python3 submitStreamsApplication.py](submitStreamsApplication.py) submits the compiled Streams application to run in the service
+* [python3 submitStreamsApplication.py](./cloud/submitStreamsApplication.py) submits the compiled Streams application to run in the service
 
-* [python3 retrieveStreamsJobLogs.py](retrieveStreamsJobLogs.py) stores the logs of jobs running the application in compressed 'tar' archives
+* [python3 retrieveStreamsJobLogs.py](./cloud/retrieveStreamsJobLogs.py) stores the logs of jobs running the application in compressed 'tar' archives
 
-* [python3 cancelStreamsJobs.py](cancelStreamsJobs.py) cancels any jobs running the submitted application
+* [python3 cancelStreamsJobs.py](./cloud/cancelStreamsJobs.py) cancels any jobs running the submitted application
 
-* [python3 stopStreamsService.py](stopStreamsService.py) stops the service after canceling any running jobs
+* [python3 stopStreamsService.py](./cloud/stopStreamsService.py) stops the service after canceling any running jobs
 
 
 
